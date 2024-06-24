@@ -1,0 +1,67 @@
+﻿@model Assignment3.Models.Post
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="font-size: 2.5em; color: #333; text-align: center; margin-bottom: 20px;">Details</h1>
+
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+    <h4 style="font-size: 1.5em; color: #666; margin-bottom: 10px;">Post</h4>
+    <hr style="border: 1px solid #ddd; margin-bottom: 20px;" />
+    <dl class="row">
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <hr class="col-12" style="border: 1px solid #ddd;" />
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.UpdatedDate)
+        </dd>
+        <hr class="col-12" style="border: 1px solid #ddd;" />
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <hr class="col-12" style="border: 1px solid #ddd;" />
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <hr class="col-12" style="border: 1px solid #ddd;" />
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.PublishStatus)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.PublishStatus)
+        </dd>
+        <hr class="col-12" style="border: 1px solid #ddd;" />
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.Author.Fullname)
+        </dd>
+        <hr class="col-12" style="border: 1px solid #ddd;" />
+        <dt class="col-sm-3" style="font-weight: bold; color: #333;">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-9" style="color: #666;">
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+    </dl>
+</div>
+<div style="text-align: center;">
+    @*<a asp-action="Edit" asp-route-id="@Model?.PostId" class="btn btn-warning" style="border-radius: 5px; padding: 10px 20px;">Edit</a>
+    <span> | </span>*@
+    <a asp-action="Index" class="btn btn-secondary" style="border-radius: 5px; padding: 10px 20px;">Back to List</a>
+</div>

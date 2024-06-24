@@ -1,0 +1,83 @@
+﻿@model Assignment3.Models.AppUser
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "_Layout";
+}
+
+<h1 style="font-size: 2.5em; color: #333; text-align: center; margin-bottom: 20px;">Register</h1>
+
+<h4 style="font-size: 1.5em; color: #666; margin-bottom: 10px; text-align: center;">AppUser</h4>
+<hr style="border: 1px solid #ddd; margin-bottom: 20px;" />
+
+<div class="row justify-content-md-center" style="margin-top: 50px;">
+    <div class="col-md-6">
+        <div class="card" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+            <div class="card-body" style="padding: 30px;">
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Fullname" class="control-label"></label>
+                        <input asp-for="Fullname" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="Fullname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-4" style="position: relative;">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" type="password" style="border-radius: 5px; padding-right: 40px;" />
+                        <span class="password-toggle" id="togglePassword" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                                <path d="M10.742 12.168A5.46 5.46 0 0 1 8 13.5a5.46 5.46 0 0 1-2.742-.832l-.97.97A7.463 7.463 0 0 0 8 15c3.866 0 7-2.686 7-6 0-1.494-.577-2.904-1.61-4.01l-.992.994A5.442 5.442 0 0 1 14 8.5c0 2.632-2.239 4.786-5 4.999v-.003a5.46 5.46 0 0 1-1.258-.328zm1.167-2.581A2.87 2.87 0 0 0 14 8.5a2.87 2.87 0 0 0-.242-1.125l-.906.905a4.54 4.54 0 0 1-.426 2.307z" />
+                                <path d="M10.052 6.467 7.715 4.129C6.895 3.437 5.845 3 4.736 3 2.21 3 0 5.1 0 8c0 1.388.545 2.665 1.514 3.742l.967-.967C1.938 9.871 1.5 8.88 1.5 8c0-2.351 1.869-4 4-4a3.91 3.91 0 0 1 1.528.347l-1.528 1.527a2.532 2.532 0 0 0 0 3.576l2.337 2.337c.287-.156.57-.336.845-.528z" />
+                                <path fill-rule="evenodd" d="M13.354 1.354a.5.5 0 0 1 0 .707L2.207 13.207a.5.5 0 0 1-.707-.707l11.147-11.146a.5.5 0 0 1 .707 0z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <input type="submit" value="Register" class="btn btn-primary" style="border-radius: 5px; width: 100%; padding: 10px;" />
+                    </div>
+                </form>
+
+                @if (@TempData["error"] != null)
+                {
+                    <p class="alert alert-danger" role="alert">@TempData["error"]</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const togglePassword = document.querySelector("#togglePassword");
+            const passwordField = document.querySelector("[name='Password']");
+            const eyeIcon = document.querySelector("#eyeIcon");
+
+            togglePassword.addEventListener("click", function () {
+                const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+                passwordField.setAttribute("type", type);
+
+                if (type === "text") {
+                    eyeIcon.setAttribute("class", "bi bi-eye-fill");
+                    eyeIcon.setAttribute("d", "M16 8s-4-6-8-6-8 6-8 6 4 6 8 6 8-6 8-6zm-8 2a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4.285-.857a.5.5 0 0 0 .64.768A5.481 5.481 0 0 0 8 10a5.481 5.481 0 0 0 3.646-1.246.5.5 0 1 0-.64-.768A4.48 4.48 0 0 1 8 9a4.48 4.48 0 0 1-3.285-1.285.5.5 0 0 0-.64.768z");
+                } else {
+                    eyeIcon.setAttribute("class", "bi bi-eye-slash-fill");
+                    eyeIcon.setAttribute("d", "M10.742 12.168A5.46 5.46 0 0 1 8 13.5a5.46 5.46 0 0 1-2.742-.832l-.97.97A7.463 7.463 0 0 0 8 15c3.866 0 7-2.686 7-6 0-1.494-.577-2.904-1.61-4.01l-.992.994A5.442 5.442 0 0 1 14 8.5c0 2.632-2.239 4.786-5 4.999v-.003a5.46 5.46 0 0 1-1.258-.328zm1.167-2.581A2.87 2.87 0 0 0 14 8.5a2.87 2.87 0 0 0-.242-1.125l-.906.905a4.54 4.54 0 0 1-.426 2.307z M10.052 6.467 7.715 4.129C6.895 3.437 5.845 3 4.736 3 2.21 3 0 5.1 0 8c0 1.388.545 2.665 1.514 3.742l.967-.967C1.938 9.871 1.5 8.88 1.5 8c0-2.351 1.869-4 4-4a3.91 3.91 0 0 1 1.528.347l-1.528 1.527a2.532 2.532 0 0 0 0 3.576l2.337 2.337c.287-.156.57-.336.845-.528z M13.354 1.354a.5.5 0 0 1 0 .707L2.207 13.207a.5.5 0 0 1-.707-.707l11.147-11.146a.5.5 0 0 1 .707 0z");
+                }
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
